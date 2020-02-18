@@ -15,7 +15,7 @@ after_success:
     - docker build -t stefanociceri/multidocker-worker ./worker
 
     # Login to Docker CLI
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin docker.io 
 
     # Push images to Docker Hub
     - docker push stefanociceri/multidocker-client
