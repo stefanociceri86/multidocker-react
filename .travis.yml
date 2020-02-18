@@ -3,22 +3,22 @@ services:
     - docker
 
 before_install:
-    - docker build -t stefanociceri/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t stematrix86/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run stefanociceri/react-test npm test -- --coverage
+    - docker run stematrix86/react-test npm test -- --coverage
 
 after_success:
-    - docker build -t stefanociceri/multidocker-client ./client
-    - docker build -t stefanociceri/multidocker-nginx ./nginx
-    - docker build -t stefanociceri/multidocker-server ./server
-    - docker build -t stefanociceri/multidocker-worker ./worker
+    - docker build -t stematrix86/multidocker-client ./client
+    - docker build -t stematrix86/multidocker-nginx ./nginx
+    - docker build -t stematrix86/multidocker-server ./server
+    - docker build -t stematrix86/multidocker-worker ./worker
 
     # Login to Docker CLI
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin docker.io 
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
     # Push images to Docker Hub
-    - docker push stefanociceri/multidocker-client
-    - docker push stefanociceri/multidocker-nginx
-    - docker push stefanociceri/multidocker-server
-    - docker push stefanociceri/multidocker-worker
+    - docker push stematrix86/multidocker-client
+    - docker push stematrix86/multidocker-nginx
+    - docker push stematrix86/multidocker-server
+    - docker push stematrix86/multidocker-worker
