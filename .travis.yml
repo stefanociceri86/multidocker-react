@@ -22,3 +22,16 @@ after_success:
     - docker push stematrix86/multidocker-nginx
     - docker push stematrix86/multidocker-server
     - docker push stematrix86/multidocker-worker
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: eu-central-1
+    app: multi-docker
+    env: MultiDocker-env
+    bucket-name: elasticbeanstalk-eu-central-1-227616062713
+    bucket-path: docker-multi
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
